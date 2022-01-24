@@ -1,7 +1,6 @@
 var issueContainerEl = document.querySelector("#issues-container");
 var limitWarningEl = document.querySelector("#limit-warning");
 var repoNameEl = document.querySelector("#repo-name");
-var queryString = document.location.search;
 
 var getRepoName = function() {
 
@@ -25,7 +24,7 @@ var getRepoName = function() {
 
 var getRepoIssues = function(repo) {
   var apiUrl = "https://api.github.com/repos/" + repo + "/issues?direction=asc";
-  
+
   // make a get request to url
   fetch(apiUrl).then(function(response) {
 
@@ -56,6 +55,7 @@ var displayIssues = function(issues) {
       return;
     } 
 
+  // loop over given issues
   for (var i = 0; i < issues.length; i++) {
     
     // create a link element to take users to the issue on github
@@ -83,6 +83,8 @@ var displayIssues = function(issues) {
 
     // append to container
     issueEl.appendChild(typeEl);
+
+    // append to DOM
     issueContainerEl.appendChild(issueEl);
   }
 };
